@@ -32,8 +32,9 @@ Powershell Core:
 python ./sed_inplace.py -p '(?ims)^(<Directory\s*\"\/var\/www\/html\">.*?AllowOverride\s*)(None|All|Options|FileInfo|AuthConfig|Limit)+(.*?<\/Directory>)$' -r '\g<1>All\g<3>' -i './tests/httpd.conf'
 ```
 
-Will find the following section in the default Apache config file `httpd.conf` provided in the tests project directory, and replace `AllowOverride None` with `AllowOverride All`.
+Will find the `AllowOverride None` item in the `<Directory "/var/www/html">` section of the provided default Apache config file `httpd.conf` in the tests project directory, and replace it with `AllowOverride All`.
 
+Before sed_inplace command:
 ```xml
 <Directory "/var/www/html">
     #
@@ -56,6 +57,37 @@ Will find the following section in the default Apache config file `httpd.conf` p
     #   Options FileInfo AuthConfig Limit
     #
     AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Require all granted
+</Directory>
+```
+
+After sed_inplace command:
+```xml
+<Directory "/var/www/html">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    Options Indexes FollowSymLinks
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride All
 
     #
     # Controls who can get stuff from this server.
