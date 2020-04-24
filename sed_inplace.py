@@ -5,7 +5,6 @@ import getopt
 import re
 import shutil
 import tempfile
-import ptvsd
 
 
 # Perform the pure-Python equivalent of in-place `sed` substitution: e.g.,
