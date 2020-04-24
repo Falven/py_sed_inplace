@@ -11,8 +11,17 @@ Credit to *Cecil Curry* on StackOverflow. Thanks for your whimsical humour.
 
 ```
 sed_inplace.py -p <pattern> -r <replacement> -f <file>
-sed_inplace.py --patern <pattern> --replacement <replacement> --file <file>
+sed_inplace.py --pattern <pattern> --replacement <replacement> --file <file>
 ```
+
+**New**: users can now pass multiple patterns and replacements to be replaced (in order) all in one file IO operation in the form of:
+
+```
+sed_inplace.py -p <pattern1> -r <replacement1> -p <pattern2> -r <replacement2> -f <file>
+sed_inplace.py --pattern <pattern1> --replacement <replacement1> --pattern <pattern2> --replacement <replacement2> --file <file>
+```
+
+*Please note that the order of the patterns and replacements matter. They are processed in-argument-order.*
 
 ### Pattern
 
