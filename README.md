@@ -33,6 +33,10 @@ From [the python documentation](https://docs.python.org/3/library/re.html#re.sub
 
 >In string-type repl arguments, in addition to the character escapes and backreferences described above, \g<name> will use the substring matched by the group named name, as defined by the (?P<name>...) syntax. \g<number> uses the corresponding group number; \g<2> is therefore equivalent to \2, but isn’t ambiguous in a replacement such as \g<2>0. \20 would be interpreted as a reference to group 20, not a reference to group 2 followed by the literal character '0'. The backreference \g<0> substitutes in the entire substring matched by the RE.
 
+### File
+
+The file to edit in-place. The script will create a temporary copy of the file to perform the replacement, and then overwrite the file with the replacement.
+
 ### Examples
 
 Powershell Core:
