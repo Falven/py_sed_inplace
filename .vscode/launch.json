@@ -14,10 +14,12 @@
         "args": [
           "-p",
           "(?ims)^(<Directory\\s*\\\"/var/www/html\\\">.*?AllowOverride\\s*)(None|All|Options|FileInfo|AuthConfig|Limit)+(.*?</Directory>)$",
+          "-p",
+          "(?ims)^(<Directory\\s*\\\"/var/www\\\">.*?AllowOverride\\s*)(None|All|Options|FileInfo|AuthConfig|Limit)+(.*?</Directory>)$",
           "-r",
           "\\g<1>All\\g<3>",
           "-i",
-          "httpd.conf"
+          "./tests/httpd.conf"
         ]
       }
     },
