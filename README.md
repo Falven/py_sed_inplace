@@ -35,7 +35,7 @@ From [the python documentation](https://docs.python.org/3/library/re.html#re.sub
 
 ### File
 
-The file to edit in-place. The script will create a temporary copy of the file to perform the replacement, and then overwrite the file with the replacement.
+The path to the file to edit in-place. The script will create a temporary copy of the file to perform the replacement, and then overwrite the file with the replacement.
 
 ## Examples
 
