@@ -14,7 +14,7 @@ sed_inplace.py -p <pattern> -r <replacement> -f <file>
 sed_inplace.py --pattern <pattern> --replacement <replacement> --file <file>
 ```
 
-**New**: users can now pass multiple patterns and replacements to be replaced (in order) all in one file IO operation in the form of:
+**New: users can now pass multiple patterns and replacements to be replaced (in order) all in one file IO operation in the form of:**
 
 ```
 sed_inplace.py -p <pattern1> -r <replacement1> -p <pattern2> -r <replacement2> -f <file>
