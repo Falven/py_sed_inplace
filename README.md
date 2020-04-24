@@ -32,7 +32,7 @@ Powershell Core:
 python ./sed_inplace.py -p '(?ims)^(<Directory\s*\"\/var\/www\/html\">.*?AllowOverride\s*)(None|All|Options|FileInfo|AuthConfig|Limit)+(.*?<\/Directory>)$' -r '\g<1>All\g<3>' -i './tests/httpd.conf'
 ```
 
-Will find the following section in this default Apache config file, and replace `AllowOverride None` with `AllowOverride All`.
+Will find the following section in the default Apache config file provided in the tests project directory, and replace `AllowOverride None` with `AllowOverride All`.
 
 ```xml
 <Directory "/var/www/html">
