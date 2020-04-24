@@ -1,7 +1,6 @@
 # py_sed_inplace
-Sed implementation using python Regular Expressions
 
-Edit a file in-place using a powerful Python regular expression.
+Edit a file in-place using a powerful Python Regular Expression!
 
 >Authoring a homegrown sed replacement in pure Python with no external commands or additional dependencies is a noble task laden with noble landmines. Who would have thought?
 >Nonetheless, it is feasible. It's also desirable. We've all been there, people: "I need to munge some plaintext files, but I only have Python, two plastic shoelaces, and a moldy can of bunker-grade Maraschino cherries. Help."
