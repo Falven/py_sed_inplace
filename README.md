@@ -22,7 +22,7 @@ Ensure that the regular expression is properly escaped for your shell of choice,
 ### Flags
 
 Python allows pattern flags to be passed in as the **first item** in the regular expression in the format:
-`(?aiLmsux-imsx:...)` where 'a', 'i', 'L', 'm', 's', 'u', 'x' correspond with their respective regex flags.
+`(?aiLmsux-imsx:...)` where `'a', 'i', 'L', 'm', 's', 'u', 'x'` correspond with their respective regex flags.
 See [the documentation](https://docs.python.org/3/library/re.html#re.Pattern.flags) for more information.
 
 ### Examples
