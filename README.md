@@ -14,7 +14,7 @@ Credit to *Cecil Curry* on StackOverflow. Thanks for your whimsical humour.
 sed_inplace.py -p <pattern> -r <replacement> -f <file>
 sed_inplace.py --patern <pattern> --replacement <replacement> --file <file>
 ```
-  
+
 The pattern must be a Python-compatible Regular Expression. Test it over at [regex101.com](https://regex101.com/r/QfFaCY/10).
 
 Ensure that the regular expression is properly escaped for your shell of choice, or use a string literal to avoid having to escape at all!
@@ -31,7 +31,6 @@ Powershell Core:
 ```powershell
 python ./sed_inplace.py -p '(?ims)^(<Directory\s*\"\/var\/www\/html\">.*?AllowOverride\s*)(None|All|Options|FileInfo|AuthConfig|Limit)+(.*?<\/Directory>)$' -r '\g<1>All\g<3>' -i './tests/httpd.conf'
 ```
-
 
 Will find the `AllowOverride None` item in the `<Directory "/var/www/html">` section of the provided default Apache config file `httpd.conf` in the tests project directory, and replace it with `AllowOverride All`.
 
