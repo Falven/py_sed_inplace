@@ -9,7 +9,7 @@ import tempfile
 
 # Perform the pure-Python equivalent of in-place `sed` substitution: e.g.,
 # `sed -i -e 's/'${pattern}'/'${repl}' "${filename}"`.
-def sed_inplace(patterns, repl, filename):
+def sed_inplace(patterns, replacements, filename):
     # For portability, NamedTemporaryFile() defaults to mode "w+b" (i.e., binary
     # writing with updating). This is usually a good thing. In this case,
     # however, binary writing imposes non-trivial encoding constraints trivially
@@ -17,15 +17,17 @@ def sed_inplace(patterns, repl, filename):
     with tempfile.NamedTemporaryFile(mode='w', delete=False) as tmp_file:
         with open(filename) as src_file:
             content = src_file.read()
-            for pattern in patterns:
+            for pattern_index in range(len(patterns)):
                 # For efficiency, precompile the passed regular expression.
-                pattern_compiled = re.compile(pattern)
+                pattern_compiled = re.compile(patterns[pattern_index])
                 if pattern_compiled.flags & re.M:
-                    content = pattern_compiled.sub(repl, content)
+                    content = pattern_compiled.sub(
+                        replacements[pattern_index], content)
                 else:
                     lines = content.splitlines()
-                    for index in range(len(lines)):
-                        lines[index] = pattern_compiled.sub(repl, lines[index])
+                    for line_index in range(len(lines)):
+                        lines[line_index] = pattern_compiled.sub(
+                            replacements[pattern_index], lines[line_index])
                     content = ''.join(lines)
             tmp_file.write(content)
     # Overwrite the original file with the munged temporary file in a
@@ -37,12 +39,14 @@ def sed_inplace(patterns, repl, filename):
 def usage():
     print('sed_inplace.py -p <pattern> -r <replacement> -f <file>')
     print('sed_inplace.py --patern <pattern> --replacement <replacement> --file <file>')
+    print('sed_inplace.py -p <pattern1> -r <replacement1> -p <pattern2> -r <replacement2> -f <file>')
+    print('sed_inplace.py --patern <pattern1> --replacement <replacement1> --patern <pattern2> --replacement <replacement2> --file <file>')
     sys.exit(2)
 
 
 def main(argv):
     patterns = []
-    replacement = ''
+    replacements = []
     input_file = ''
     try:
         opts, prog_argv = getopt.getopt(
@@ -53,13 +57,14 @@ def main(argv):
         if opt in ("-p", "--pattern"):
             patterns.append(arg)
         elif opt in ("-r", "--replacement"):
-            replacement = arg
+            replacements.append(arg)
         elif opt in ("-i", "--inputfile"):
             input_file = arg
-    if len(patterns) > 0 and replacement and input_file:
-        sed_inplace(patterns, replacement, input_file)
-    else:
+    patterns_len = len(patterns)
+    replacements_len = len(replacements)
+    if patterns_len < 1 or replacements_len < 1 or patterns_len != replacements_len or not input_file:
         usage()
+    sed_inplace(patterns, replacements, input_file)
 
 
 if __name__ == "__main__":
