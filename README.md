@@ -37,7 +37,7 @@ From [the python documentation](https://docs.python.org/3/library/re.html#re.sub
 
 The file to edit in-place. The script will create a temporary copy of the file to perform the replacement, and then overwrite the file with the replacement.
 
-### Examples
+## Examples
 
 Powershell Core:
 ```powershell
